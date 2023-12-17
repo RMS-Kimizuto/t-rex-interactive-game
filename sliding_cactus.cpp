@@ -32,9 +32,10 @@ void moveCactus(int dx, int dy)
     deleteCactus();
     cactus_x += dx;
     cactus_y += dy;
+    if (cactus_x < -3) 
+        cactus_x = WIDTH;
     //cactus_x = max(cactus_x, 1);
     //cactus_y = max(cactus_y, 1);
-    cactus_x = min(cactus_x, WIDTH - 5);
     cactus_y = min(cactus_y, HEIGHT - 4);
     drawCactus();
 }
