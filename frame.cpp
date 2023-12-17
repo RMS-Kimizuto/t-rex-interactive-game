@@ -12,6 +12,11 @@ const int WIDTH = 100;
 const int HEIGHT = 20;
 char frame[HEIGHT][WIDTH];
 
+// Function to introduce a delay in milliseconds
+void delay(int milliseconds) {
+    Sleep(milliseconds);
+}
+
 // Function to move the console cursor to position (x, y)
 void moveCursorTo(int x, int y) {
     COORD coord;
@@ -71,5 +76,14 @@ void moveBox(int dx, int dy)
     box_x = min(box_x, WIDTH-3);
     box_y = min(box_y, HEIGHT-2);
     drawBox();
+    delay(80);
 }
 
+void drawOnFrame(int x, int y, char value)
+{
+    if (x < 1 || y < 1 || x > WIDTH-3 || y > HEIGHT-2)
+        return;
+    moveCursorTo(x, y);
+    cout << value;
+    moveCursorTo(0, 0);
+}
