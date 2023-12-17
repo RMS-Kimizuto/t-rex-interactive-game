@@ -1,37 +1,52 @@
 #include <iostream>
 #include <conio.h>
+#include <windows.h> // Include the Windows header for Windows-specific functions
+#include "frame.cpp"
 
 using namespace std;
+
+// Function to clear the console screen on Windows
+void clearScreen() {
+    system("cls");
+}
 
 int main() {
     char key;
     int arrowKey;
+    clearScreen();
+    initFrame();
+    draw();
+    drawBox();
     while (true) {
-        
         if (_kbhit()) {
             key = _getch();
-            if (key == 0) {
+            if (key == 0 || key==-32) {
                 arrowKey = _getch();
-                cout << "Arrow key pressed: ";
+                //cout << "Arrow key pressed: ";
                 switch (arrowKey) {
                     case 72:
-                        cout << "UP";
+                        //cout << "UP";
+                        moveBox(0, -1);
                         break;
                     case 80:
-                        cout << "DOWN";
+                        //cout << "DOWN";
+                        moveBox(0, 1);
                         break;
                     case 75:
-                        cout << "LEFT";
+                        moveBox(-1, 0);
+                        //cout << "LEFT";
                         break;
                     case 77:
-                        cout << "RIGHT";
+                        moveBox(1, 0);
+                        //cout << "RIGHT";
                         break;
                     default:
-                        cout << "Unknown";
+                        //cout << "Unknown";
+                        break;
                 }
-                cout << endl;
+                //cout << endl;
             } else {
-                cout << "Key pressed: " << key << endl;
+                //cout << "Key pressed: " << (int)key << endl;
                 if (key == 'q') {
                     break;
                 }
