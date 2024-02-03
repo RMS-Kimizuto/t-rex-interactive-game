@@ -18,33 +18,27 @@ int main() {
     draw();
     drawBox();
     drawCactus();
-    while (true) {
+    bool gameOver = false;
+    while (!gameOver) {
+        while(!_kbhit())
+        {
+            moveBox(0, 1);
+            moveCactus(-1, 0);
+            if (checkCatusCollision())
+                gameOver = true;
+                break;
+        }
         if (_kbhit()) {
             key = _getch();
             if (key == 0 || key==-32) {
                 arrowKey = _getch();
-                //cout << "Arrow key pressed: ";
                 switch (arrowKey) {
                     case 72:
                         //cout << "UP";
                         moveBox(0, -3);
-                        break;
-                    case 80:
-                        //cout << "DOWN";
-                        break;
-                    case 75:
-                        //moveBox(-1, 0);
-                        //cout << "LEFT";
-                        break;
-                    case 77:
-                        //moveBox(1, 0);
-                        //cout << "RIGHT";
-                        break;
-                    default:
-                        //cout << "Unknown";
+                        moveCactus(-1, 0);
                         break;
                 }
-                //cout << endl;
             } else {
                 //cout << "Key pressed: " << (int)key << endl;
                 if (key == 'q') {
@@ -52,8 +46,10 @@ int main() {
                 }
             }
         }
-        moveBox(0, 1);
-        moveCactus(-1, 0);
     }
+    clearScreen();
+    printGameOver();
+    char ch;
+    cin >> ch;
     return 0;
 }

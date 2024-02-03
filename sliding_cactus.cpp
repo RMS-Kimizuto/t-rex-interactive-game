@@ -39,3 +39,11 @@ void moveCactus(int dx, int dy)
     cactus_y = min(cactus_y, HEIGHT - 4);
     drawCactus();
 }
+
+
+bool checkCatusCollision()
+{
+    if (checkCollision(box_x, box_y, cactus_x, cactus_y, CACTUS_W, CACTUS_H))
+        return true;
+    return false;
+}
